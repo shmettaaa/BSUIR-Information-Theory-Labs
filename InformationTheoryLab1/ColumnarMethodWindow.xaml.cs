@@ -31,6 +31,7 @@ namespace InformationTheoryLab1
             KeyTextBox.IsEnabled = true;
             ResultButton.IsEnabled = true;
 
+
             MainTextBox.Clear();
             KeyTextBox.Clear();
             ResultTextBlock.Text = "";
