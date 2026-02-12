@@ -9,8 +9,8 @@
         Title="ColumnarMethodWindow" Height="441" Width="700"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="MainTextBox" HorizontalAlignment="Left" Margin="281,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" RenderTransformOrigin="0.432,0.508" FontFamily="Segoe UI Variable Display Semibold" FontSize="20" IsEnabled="False"/>
-        <TextBox x:Name="KeyTextBox" HorizontalAlignment="Left" Margin="281,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" FontFamily="Segoe UI Variable Display Semibold" FontSize="20" IsEnabled="False"/>
+        <TextBox x:Name="MainTextBox" HorizontalAlignment="Left" Margin="281,140,0,0" TextChanged ="Input_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" RenderTransformOrigin="0.432,0.508" FontFamily="Segoe UI Variable Display Semibold" FontSize="20" IsEnabled="False"/>
+        <TextBox x:Name="KeyTextBox" HorizontalAlignment="Left" Margin="281,192,0,0" TextChanged ="Input_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" FontFamily="Segoe UI Variable Display Semibold" FontSize="20" IsEnabled="False"/>
         <Label x:Name="TextLabel" Content="Введите исходный текст:" HorizontalAlignment="Left" Margin="31,140,0,0" 
                VerticalAlignment="Top" Width="250" FontSize="20"/>
         <Label x:Name="KeyLabel" Content="Введите ключевое слово:" HorizontalAlignment="Left" Margin="31,192,0,0" 
@@ -25,16 +25,24 @@
         <RadioButton x:Name="DecryptRadioButton" Content="Дешифровать" HorizontalAlignment="Right"
                      Margin="0,86,191,0" VerticalAlignment="Top" FontSize="20" Height="39" Checked="RadioButton_Checked"/>
 
-        <Button x:Name="OpenFileButton" Content="📂 Открыть файл" HorizontalAlignment="Center" 
-                Margin="0,310,0,0" VerticalAlignment="Top" Width="150" Height="30" 
+        <Button x:Name="OpenFileButton" Content="📂 Открыть файл" HorizontalAlignment="Left" 
+                Margin="10,17,0,0" VerticalAlignment="Top" Width="128" Height="30" 
                 Click="OpenFileButton_Click"/>
 
         <Button x:Name="ResultButton" Content="Шифровать" HorizontalAlignment="Center" Margin="0,253,0,0"
                 VerticalAlignment="Top" Width="192" Height="47" FontWeight="Bold" IsEnabled="False" Click="ResultButton_Click"/>
 
-        <TextBlock x:Name="ResultTextBlock" HorizontalAlignment="Left" Margin="137,346,0,0"
-                   TextWrapping="Wrap" VerticalAlignment="Top"
-                   Width="185" Height="31" FontSize="20"/>
+        <Border BorderBrush="Black" BorderThickness="1" 
+        HorizontalAlignment="Left" Margin="31,358,0,0"
+        VerticalAlignment="Top" Width="641" Height="38"
+        Background="#FFF0F0F0">
+            <TextBlock x:Name="ResultTextBlock" TextWrapping="Wrap"
+               Margin="5" FontSize="20" VerticalAlignment="Center"/>
+        </Border>
+        <Button x:Name="SaveFileButton" Content="💾 Сохранить" 
+        HorizontalAlignment="Left" Margin="281,311,0,0"
+        VerticalAlignment="Top" Width="120" Height="30"
+        Click="SaveFileButton_Click"/>
 
     </Grid>
 </Controls:MetroWindow>

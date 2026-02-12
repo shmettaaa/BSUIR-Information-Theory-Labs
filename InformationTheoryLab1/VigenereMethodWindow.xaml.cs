@@ -43,12 +43,18 @@ namespace InformationTheoryLab1
                 TextLabel.Content = "Введите исходный текст:";
                 KeyLabel.Content = "Введите ключ:";
                 ResultButton.Content = "Шифровать";
+
+                GeneratedKeyLabel.Visibility = Visibility.Visible;
+                GeneratedKeyTextBlock.Visibility = Visibility.Visible;
             }
             else if (DecryptRadioButton.IsChecked == true)
             {
                 TextLabel.Content = "Введите шифротекст:";
                 KeyLabel.Content = "Введите ключ:";
                 ResultButton.Content = "Дешифровать";
+
+                GeneratedKeyLabel.Visibility = Visibility.Collapsed;
+                GeneratedKeyTextBlock.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -82,23 +88,55 @@ namespace InformationTheoryLab1
             }
         }
 
-        private void MainTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             GenerateKey();
+            ResultTextBlock.Text = "";
+            var textBox = sender as TextBox;
+            if (textBox == null) return;
+
+            int caretIndex = textBox.CaretIndex;
+
+            string text = textBox.Text;
+            StringBuilder converted = new StringBuilder();
+
+            foreach (char c in text)
+            {
+                if (c >= 'а' && c <= 'я')
+                {
+                    converted.Append((char)(c - 32));
+                }
+                else if (c == 'ё')
+                {
+                    converted.Append('Ё');
+                }
+                else
+                {
+                    converted.Append(c);
+                }
+            }
+
+            string newText = converted.ToString();
+
+            if (textBox.Text != newText)
+            {
+                textBox.Text = newText;
+                textBox.CaretIndex = caretIndex;
+            }
         }
 
-        private void KeyTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            GenerateKey();
-        }
+
 
         private void GenerateKey()
         {
-            string text = MainTextBox.Text.Trim();
-            string key = KeyTextBox.Text.Trim();
+            if (EncryptRadioButton.IsChecked == true)
+            {
+                string text = MainTextBox.Text.Trim();
+                string key = KeyTextBox.Text.Trim();
 
-            string generatedKey = Vigenere.GenerateKey(text, key);
-            GeneratedKeyTextBlock.Text = generatedKey;
+                string generatedKey = Vigenere.GenerateKey(text, key);
+                GeneratedKeyTextBlock.Text = generatedKey;
+            }
         }
 
         private void ResultButton_Click(object sender, RoutedEventArgs e)
@@ -115,8 +153,27 @@ namespace InformationTheoryLab1
             }
             else
             {
-                string result = Vigenere.Decrypt(text, generatedKey);
+                string result = Vigenere.Decrypt(text, shortKey);
                 ResultTextBlock.Text = result;
+            }
+        }
+
+        private void SaveFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ResultTextBlock.Text))
+            {
+                MessageBox.Show("Нет результата для сохранения");
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt";
+            saveFileDialog.DefaultExt = "txt";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, ResultTextBlock.Text);
+                MessageBox.Show("Файл сохранен");
             }
         }
     }

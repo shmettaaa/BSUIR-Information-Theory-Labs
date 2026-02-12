@@ -92,5 +92,61 @@ namespace InformationTheoryLab1
                 ResultTextBlock.Text = result;
             }
         }
+
+        private void Input_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ResultTextBlock.Text = "";
+            var textBox = sender as TextBox;
+            if (textBox == null) return;
+
+            int caretIndex = textBox.CaretIndex;
+
+            string text = textBox.Text;
+            StringBuilder converted = new StringBuilder();
+
+            foreach (char c in text)
+            {
+                if (c >= 'а' && c <= 'я')
+                {
+                    converted.Append((char)(c - 32));
+                }
+                else if (c == 'ё')
+                {
+                    converted.Append('Ё');
+                }
+                else
+                {
+                    converted.Append(c);
+                }
+            }
+
+            string newText = converted.ToString();
+
+            if (textBox.Text != newText)
+            {
+                textBox.Text = newText;
+                textBox.CaretIndex = caretIndex;
+            }
+        
+        }
+
+        private void SaveFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ResultTextBlock.Text))
+            {
+                MessageBox.Show("Нет результата для сохранения");
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt";
+            saveFileDialog.DefaultExt = "txt";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, ResultTextBlock.Text);
+                MessageBox.Show("Файл сохранен");
+            }
+        }
     }
 }
