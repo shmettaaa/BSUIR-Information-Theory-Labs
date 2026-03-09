@@ -18,6 +18,7 @@ namespace InformationTheoryLab2
             UpdateControls();
         }
 
+
         private void Mode_Checked(object sender, RoutedEventArgs e)
         {
             ClearAllFields();
