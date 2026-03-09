@@ -6,14 +6,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InformationTheoryLab1"
         mc:Ignorable="d"
-        Title="ColumnarMethodWindow" Height="441" Width="700"
+        Title="ColumnarMethodWindow" Height="475" Width="700"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="MainTextBox" HorizontalAlignment="Left" Margin="281,140,0,0" TextChanged ="Input_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" RenderTransformOrigin="0.432,0.508" FontFamily="Segoe UI Variable Display Semibold" FontSize="20" IsEnabled="False"/>
-        <TextBox x:Name="KeyTextBox" HorizontalAlignment="Left" Margin="281,192,0,0" TextChanged ="Input_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" FontFamily="Segoe UI Variable Display Semibold" FontSize="20" IsEnabled="False"/>
+        <TextBox x:Name="MainTextBox" 
+         HorizontalAlignment="Left" 
+         Margin="281,140,0,0" 
+         TextChanged="Input_TextChanged" 
+         TextWrapping="Wrap" 
+         VerticalAlignment="Top" 
+         VerticalScrollBarVisibility="Auto"
+         Width="391" 
+         Height="65"
+         MaxHeight="100"
+         RenderTransformOrigin="0.432,0.508" 
+         FontFamily="Segoe UI Variable Display Semibold" 
+         FontSize="20" 
+         IsEnabled="False"/>
+        <TextBox x:Name="KeyTextBox" HorizontalAlignment="Left" Margin="281,210,0,0" TextChanged ="Input_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" FontFamily="Segoe UI Variable Display Semibold" FontSize="20" IsEnabled="False"/>
         <Label x:Name="TextLabel" Content="Введите исходный текст:" HorizontalAlignment="Left" Margin="31,140,0,0" 
                VerticalAlignment="Top" Width="250" FontSize="20"/>
-        <Label x:Name="KeyLabel" Content="Введите ключевое слово:" HorizontalAlignment="Left" Margin="31,192,0,0" 
+        <Label x:Name="KeyLabel" Content="Введите ключевое слово:" HorizontalAlignment="Left" Margin="26,210,0,0" 
                VerticalAlignment="Top" Width="250" FontSize="20"/>
         <Label Content="Столбцовый метод шифрования" HorizontalContentAlignment="Center" 
                HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="502" 
@@ -34,10 +47,10 @@
 
         <Border BorderBrush="Black" BorderThickness="1" 
         HorizontalAlignment="Left" Margin="31,358,0,0"
-        VerticalAlignment="Top" Width="641" Height="38"
+        VerticalAlignment="Top" Width="641" Height="91"
         Background="#FFF0F0F0">
             <TextBlock x:Name="ResultTextBlock" TextWrapping="Wrap"
-               Margin="5" FontSize="20" VerticalAlignment="Center"/>
+               Margin="5,0,5,-47" FontSize="20" VerticalAlignment="Bottom" Height="130"/>
         </Border>
         <Button x:Name="SaveFileButton" Content="💾 Сохранить" 
         HorizontalAlignment="Left" Margin="281,311,0,0"

@@ -9,7 +9,18 @@
         Title="Метод Вижинера" Height="500" Width="700"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="MainTextBox" HorizontalAlignment="Left" Margin="281,140,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="333" FontSize="20" IsEnabled="False" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="MainTextBox" 
+         HorizontalAlignment="Left" 
+         Margin="281,125,0,0"  
+         TextWrapping="Wrap" 
+         VerticalAlignment="Top" 
+         Width="333" 
+         Height="62"
+         MaxHeight="62"
+         FontSize="20" 
+         IsEnabled="False" 
+         TextChanged="TextBox_TextChanged" 
+         VerticalScrollBarVisibility="Auto"/>
         <TextBox x:Name="KeyTextBox" HorizontalAlignment="Left" Margin="281,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="333" FontSize="20" IsEnabled="False" TextChanged="TextBox_TextChanged"/>
 
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" 
@@ -46,10 +57,10 @@
 
         <Border BorderBrush="Black" BorderThickness="1" 
         HorizontalAlignment="Left" Margin="31,391,0,0"
-        VerticalAlignment="Top" Width="630" Height="50"
+        VerticalAlignment="Top" Width="630" Height="83"
         Background="#FFF0F0F0">
             <TextBlock x:Name="ResultTextBlock" TextWrapping="Wrap"
-               Margin="5" FontSize="20" VerticalAlignment="Center"/>
+               Margin="5,0,5,0" FontSize="20" VerticalAlignment="Center" Height="78"/>
         </Border>
         <Button x:Name="SaveFileButton" Content="💾 Сохранить" 
         HorizontalAlignment="Center" Margin="0,344,0,0"

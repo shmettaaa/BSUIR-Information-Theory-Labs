@@ -1,0 +1,108 @@
+﻿<Window x:Class="InformationTheoryLab2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Лабораторная Работа 2" 
+        Height="780" Width="1180"
+        MinHeight="680" MinWidth="980">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15,10,0,5">
+            <Button Content="Открыть файл" Width="160" Height="40" 
+                    FontSize="16" FontWeight="Bold" Click="OpenFile_Click" x:Name="OpenButton"/>
+            <Button Content="Сохранить" Width="160" Height="40" Margin="15,0,0,0"
+                    FontSize="16" FontWeight="Bold" Click="SaveFile_Click" x:Name="SaveButton"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,10">
+            <RadioButton Content="Шифрование" x:Name="EncryptRadio" GroupName="Mode" Checked="Mode_Checked"
+                         FontSize="20" FontWeight="Bold"/>
+            <RadioButton Content="Дешифрование" x:Name="DecryptRadio" GroupName="Mode" Checked="Mode_Checked"
+                         FontSize="20" FontWeight="Bold"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="20,5,20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Начальное состояние регистра (ровно 38 бит):"
+                   FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" x:Name="RegisterTextBox" Height="85"
+                         TextChanged="RegisterTextBox_TextChanged"
+                         IsEnabled="False"
+                         FontSize="21" FontFamily="Consolas" FontWeight="Bold"
+                         VerticalContentAlignment="Center" Padding="10"
+                         HorizontalContentAlignment="Left"
+                         MaxLength="38"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Disabled"
+                         AcceptsReturn="True"/>
+                <TextBlock Grid.Column="1" x:Name="RegisterLengthLabel"
+                           Text="0"
+                           FontSize="20" FontWeight="Bold"
+                           VerticalAlignment="Center" Margin="20,0,0,0"
+                           Foreground="#001F3F"
+                           MinWidth="60" TextAlignment="Right"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                <Label x:Name="InputLabel" Content="Исходный текст (биты):" FontWeight="Bold" FontSize="16"/>
+                <TextBox x:Name="InputTextBox" Height="208"
+         TextChanged="InputTextBox_TextChanged"  
+                    IsReadOnly="False" AcceptsReturn="True"
+         VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+         IsEnabled="False" FontFamily="Consolas" FontSize="14"
+         TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="6,0">
+                <Label Content="Биты ключа:" FontWeight="Bold" FontSize="16"/>
+                <TextBox x:Name="KeyTextBox" Height="208"
+                         IsReadOnly="True" AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                         FontFamily="Consolas" FontSize="14"
+                         TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="12,0,0,0">
+                <Label x:Name="OutputLabel" Content="Шифротекст (биты):" FontWeight="Bold" FontSize="16"/>
+                <TextBox x:Name="OutputTextBox" Height="207"
+                         IsReadOnly="True" AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                         FontFamily="Consolas" FontSize="14"
+                         TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,15">
+            <Button x:Name="ActionButton" Content="Шифровать" Width="340" Height="70"
+                    FontSize="24" FontWeight="Bold" Click="EncryptDecrypt_Click" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>

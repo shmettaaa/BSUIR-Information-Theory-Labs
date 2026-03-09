@@ -35,7 +35,7 @@ namespace InformationTheoryLab1
             MainTextBox.Clear();
             KeyTextBox.Clear();
             ResultTextBlock.Text = "";
-
+            ResultButton.IsEnabled = false;
             if (EncryptRadioButton.IsChecked == true)
             {
                 TextLabel.Content = "Введите исходный текст:";
@@ -65,13 +65,8 @@ namespace InformationTheoryLab1
             {
                 try
                 {
-                    string[] lines = File.ReadAllLines(openFileDialog.FileName);
-
-                    if (lines.Length >= 1)
-                        MainTextBox.Text = lines[0];
-
-                    if (lines.Length >= 2)
-                        KeyTextBox.Text = lines[1];
+                    string fileContent = File.ReadAllText(openFileDialog.FileName);
+                    MainTextBox.Text = fileContent;
                 }
                 catch
                 {
@@ -128,7 +123,34 @@ namespace InformationTheoryLab1
                 textBox.Text = newText;
                 textBox.CaretIndex = caretIndex;
             }
-        
+
+            CheckInputs();
+        }
+
+        private void CheckInputs()
+        {
+            bool hasText = false;
+            bool hasKey = false;
+
+            foreach (char c in MainTextBox.Text)
+            {
+                if ((c >= 'А' && c <= 'Я') || c == 'Ё')
+                {
+                    hasText = true;
+                    break;
+                }
+            }
+
+            foreach (char c in KeyTextBox.Text)
+            {
+                if ((c >= 'А' && c <= 'Я') || c == 'Ё')
+                {
+                    hasKey = true;
+                    break;
+                }
+            }
+
+            ResultButton.IsEnabled = hasText && hasKey;
         }
 
         private void SaveFileButton_Click(object sender, RoutedEventArgs e)
