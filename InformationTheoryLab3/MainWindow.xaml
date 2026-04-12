@@ -1,0 +1,87 @@
+﻿<Window x:Class="InformationTheoryLab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Лабораторная работа №3 - Алгоритм Рабина" 
+        Height="700" Width="900"
+        MinHeight="600" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15,10,0,10">
+            <Button Content="Открыть файл" Width="160" Height="40" FontSize="16" FontWeight="Bold" Click="OpenFile_Click" x:Name="OpenButton"/>
+            <Button Content="Сохранить результат" Width="180" Height="40" Margin="15,0,0,0" FontSize="16" FontWeight="Bold" Click="SaveResult_Click" x:Name="SaveButton"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,10">
+            <RadioButton Content="Шифрование" x:Name="EncryptRadio" GroupName="Mode" Checked="Mode_Checked" FontSize="18" FontWeight="Bold" Margin="20,0"/>
+            <RadioButton Content="Дешифрование" x:Name="DecryptRadio" GroupName="Mode" Checked="Mode_Checked" FontSize="18" FontWeight="Bold" Margin="20,0"/>
+        </StackPanel>
+
+
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Margin="20,5,20,10" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                 
+                    <RowDefinition Height="Auto"/>
+               
+                    <RowDefinition Height="Auto"/>
+                 
+                </Grid.RowDefinitions>
+
+
+                <Label Grid.Row="0" Grid.Column="0" Content="p (простое, ≡3 mod4):" FontWeight="Bold" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="PTextBox" TextChanged="Parameter_TextChanged" Width="120" HorizontalAlignment="Left"/>
+                <Label Grid.Row="0" Grid.Column="2" Content="q (простое, ≡3 mod4):" FontWeight="Bold" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="3" x:Name="QTextBox" TextChanged="Parameter_TextChanged" Width="120" HorizontalAlignment="Left"/>
+                <Label Grid.Row="0" Grid.Column="4" Content="b (0 &lt; b &lt; n):" FontWeight="Bold" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="5" x:Name="BTextBox" TextChanged="Parameter_TextChanged" Width="120" HorizontalAlignment="Left"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" 
+                           x:Name="MaxBLabel" 
+                           FontWeight="Bold" 
+                           Margin="5,8,5,2"
+                           Foreground="#0066CC"
+                           Text="Максимальное значение b будет показано после ввода p и q"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" 
+                           x:Name="StatusLabel" 
+                           Foreground="Red" 
+                           Margin="5" 
+                           TextWrapping="Wrap"/>
+            </Grid>
+        </Border>
+
+        <GroupBox Grid.Row="3" Header="Зашифрованные числа (десятичная система)" Margin="20,5,20,5">
+            <TextBox x:Name="NumbersTextBox" IsReadOnly="True" TextWrapping="Wrap" 
+                     VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="12" Height="120"/>
+        </GroupBox>
+
+        <GroupBox Grid.Row="4" Header="Операции" Margin="20,5,20,5">
+            <TextBox x:Name="LogTextBox" IsReadOnly="True" TextWrapping="Wrap" 
+                     VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="12"/>
+        </GroupBox>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,15">
+            <Button x:Name="ActionButton" Content="Выполнить" Width="300" Height="60" 
+                    FontSize="22" FontWeight="Bold" Click="Execute_Click" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>
